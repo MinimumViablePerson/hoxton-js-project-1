@@ -1,3 +1,22 @@
+// How Can We Change Turns
+// False => X's Turn
+// True => O's Turn
+
+// All Possible Winning Combinations
+const state = {
+    changeTurn: null,
+    winningCombinations: [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ]
+}
+
 /* <div id="container">
     <!-- Starting Page -->
     <div id="startingPage">
@@ -10,11 +29,13 @@
         </div>
     </div> */
 
+
 function renderTiTac() {
 
     const containerEl = document.createElement('div')
     containerEl.setAttribute('id', 'container')
 
+    // Starting Page
 
     const startingPage = document.createElement('div')
     startingPage.setAttribute('id', 'startingPage')
@@ -67,6 +88,7 @@ function renderTiTac() {
     //     </div>
     // </div>
 
+    // Main Page
 
     const mainPage = document.createElement('div')
     mainPage.setAttribute('id', 'mainPage')
@@ -93,31 +115,31 @@ function renderTiTac() {
     gameBoard.setAttribute('id', 'gameBoard')
 
     const divBoxes1 = document.createElement('div')
-    divBoxes1.setAttribute('id', 'boxes')
+    divBoxes1.setAttribute('class', 'boxes')
 
     const divBoxes2 = document.createElement('div')
-    divBoxes2.setAttribute('id', 'boxes')
+    divBoxes2.setAttribute('class', 'boxes')
 
     const divBoxes3 = document.createElement('div')
-    divBoxes3.setAttribute('id', 'boxes')
+    divBoxes3.setAttribute('class', 'boxes')
 
     const divBoxes4 = document.createElement('div')
-    divBoxes4.setAttribute('id', 'boxes')
+    divBoxes4.setAttribute('class', 'boxes')
 
     const divBoxes5 = document.createElement('div')
-    divBoxes5.setAttribute('id', 'boxes')
+    divBoxes5.setAttribute('class', 'boxes')
 
     const divBoxes6 = document.createElement('div')
-    divBoxes6.setAttribute('id', 'boxes')
+    divBoxes6.setAttribute('class', 'boxes')
 
     const divBoxes7 = document.createElement('div')
-    divBoxes7.setAttribute('id', 'boxes')
+    divBoxes7.setAttribute('class', 'boxes')
 
     const divBoxes8 = document.createElement('div')
-    divBoxes8.setAttribute('id', 'boxes')
+    divBoxes8.setAttribute('class', 'boxes')
 
     const divBoxes9 = document.createElement('div')
-    divBoxes9.setAttribute('id', 'boxes')
+    divBoxes9.setAttribute('class', 'boxes')
 
     gameBoard.append(divBoxes1, divBoxes2, divBoxes3, divBoxes4, divBoxes5, divBoxes6, divBoxes7, divBoxes8, divBoxes9)
 
@@ -132,6 +154,8 @@ function renderTiTac() {
     //         <button id="quit">Play Again</button>
     //     </div>
     // </div>
+
+    // WInner Page
 
     const divWiner = document.createElement('div')
     divWiner.setAttribute('id', 'winner')
@@ -158,4 +182,125 @@ function renderTiTac() {
 
 }
 
-renderTiTac()
+function render() {
+    document.body.innerHTML = ''
+    renderTiTac()
+}
+
+render()
+
+//X => <i class="fas fa-times"></i>
+//O => <i class="fas fa-circle-notch"></i>
+
+// Selecting All "Starting Page" Tags
+let startingPage = document.querySelector("#startingPage");
+let choose = document.querySelectorAll(".choose");
+
+// Selecting All "Main Page" Tags
+let mainPage = document.querySelector("#mainPage");
+let showChange = document.querySelector("#showChange");
+let boxes = document.querySelectorAll(".boxes");
+
+// Selecting All "Winner Page" Tags
+let winner = document.querySelector("#winner");
+let winnerName = document.querySelector("#winnerName");
+let quit = document.querySelector("#quit");
+
+
+// Select Which You Want To Be>
+// X or O
+choose.forEach(chooseNow => {
+    chooseNow.addEventListener("click", () => {
+        if (chooseNow.id === "playerX") {
+            state.changeTurn = false;
+            // console.log(state.changeTurn);
+            showChange.style.left = `0px`;
+        } else {
+            state.changeTurn = true;
+            // console.log(state.changeTurn);
+            showChange.style.left = `160px`;
+        }
+        startingPage.style.display = "none";
+        mainPage.style.display = "block";
+    })
+});
+
+boxes.forEach(items => {
+    items.addEventListener("click", () => {
+        // Add "X" Icon If "state.changeTurn" = False
+        // Add "O" Icon If "state.changeTurn" = True
+        if (state.changeTurn == false) {
+            items.innerHTML = `<i class="fas fa-times"></i>`;
+            items.id = "X";
+            items.style.pointerEvents = "none";
+            showChange.style.left = `160px`;
+
+            // change The "state.changeTurn" Value False Into True
+            state.changeTurn = true;
+        } else {
+            items.innerHTML = `<i class="fas fa-circle-notch"></i>`;
+            items.id = "O";
+            items.style.pointerEvents = "none";
+            showChange.style.left = `0px`;
+
+            // change The "state.changeTurn" Value False Into True
+            state.changeTurn = false;
+        }
+        winningFunc();
+        drawFunc();
+    })
+})
+
+
+let winningFunc = () => {
+    for (let a = 0; a <= 7; a++) {
+        let b = state.winningCombinations[a];
+        // console.log(b);
+
+        if (boxes[b[0]].id == "" || boxes[b[1]].id == "" || boxes[b[2]].id == "") {
+            continue;
+        } else if (boxes[b[0]].id == "X" && boxes[b[1]].id == "X" && boxes[b[2]].id == "X") {
+            // console.log("X is The Winner");
+
+            // Adding Winner text
+            winnerName.innerText = `Player X Win The Game!`;
+
+            // show "Winner Page" & Hide "Mai Page"
+            mainPage.style.display = "none";
+            winner.style.display = "block";
+        } else if (boxes[b[0]].id == "O" && boxes[b[1]].id == "O" && boxes[b[2]].id == "O") {
+            // console.log("O is The Winner");
+
+            // Adding Winner text
+            winnerName.innerText = `Player O Win The Game!`;
+
+            // show "Winner Page" & Hide "Mai Page"
+            mainPage.style.display = "none";
+            winner.style.display = "block";
+        } else {
+            continue;
+        }
+    }
+}
+
+// Match Draw Function
+let drawFunc = () => {
+    if (boxes[0].id != "" && boxes[1].id != "" &&
+        boxes[2].id != "" && boxes[3].id != "" &&
+        boxes[4].id != "" && boxes[5].id != "" &&
+        boxes[6].id != "" && boxes[7].id != "" && boxes[8].id != "") {
+        // Adding "Draw" text
+        winnerName.innerText = `Match Draw!`;
+
+        // show "Winner Page" & Hide "Mai Page"
+        mainPage.style.display = "none";
+        winner.style.display = "block";
+    }
+}
+
+// Reset Game
+quit.addEventListener("click", () => {
+    window.location.reload();
+})
+
+

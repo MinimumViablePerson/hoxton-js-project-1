@@ -66,9 +66,9 @@ body {
 #winner #button button:hover {
     transform: scale(0.9);
 }
-/* #winner {
+#winner {
     display: none;
-} */
+}
 #winner #button {
     height: auto;
     width: 100%;
@@ -84,7 +84,7 @@ body {
     width: 350px;
     padding: 20px;
     position: relative;
-    /* display: none; */
+    display: none;
 }
 #mainPage #headerBtns {
     height: 60px;
