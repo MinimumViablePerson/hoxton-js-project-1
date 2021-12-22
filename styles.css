@@ -19,26 +19,31 @@ body {
     padding: 30px;
     box-shadow: inset 1px 2px 0px rgb(255 255 255 / 18%), inset -2px -2px 2px rgb(0 0 0 / 65%);
 }
+
 #startingPage {
     height: 250px;
     width: 300px;
     text-align: center;
 }
+
 #startingPage h2,
 #winner h2 {
     font-size: 50px;
     color: #1e3845;
 }
+
 #startingPage #line {
     height: 1px;
     width: 100%;
     background: #323e44a8;
     margin: 20px 0;
 }
+
 #startingPage h4 {
     font-size: 25px;
     color: #1e3845;
 }
+
 #startingPage #button {
     height: auto;
     width: 100%;
@@ -48,6 +53,7 @@ body {
    place-content: center;
    gap: 1rem;
 }
+
 #button button {
     height: 35px;
     width: 140px;
@@ -62,13 +68,16 @@ body {
     box-shadow: 2px 2px 2px rgb(255 255 255 / 26%), -2px -2px 5px rgb(0 0 0 / 87%);
     transition: 0.5s;
 }
+
 #startingPage #button button:hover,
 #winner #button button:hover {
     transform: scale(0.9);
 }
+
 #winner {
     display: none;
 }
+
 #winner #button {
     height: auto;
     width: 100%;
@@ -76,9 +85,11 @@ body {
     justify-content: center;
     color: #1e3845;
 }
+
 #winner #button button {
     margin-top: 40px;
 }
+
 #mainPage {
     height: 600px;
     width: 460px;
@@ -86,6 +97,7 @@ body {
     position: relative;
     display: none;
 }
+
 #mainPage #headerBtns {
     height: 60px;
     width: auto;
@@ -96,6 +108,7 @@ body {
     gap: 1rem;
     box-shadow: 2px 2px 2px rgb(255 255 255 / 26%), -2px -2px 5px rgb(0 0 0 / 87%);
 }
+
 #mainPage #headerBtns button {
     height: 60px;
     width: 210px;
@@ -112,10 +125,12 @@ body {
     z-index: 2;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.60);
 }
+
 #mainPage #headerBtns #O_Turn {
     left: 210px;
     z-index: 3;
 }
+
 #showChange {
     position: absolute;
     top: 0;
@@ -127,6 +142,7 @@ body {
     z-index: 1;
     transition: 0.2s;
 }
+
 #gameBoard {
     height: 400px;
     width: 330px;
@@ -137,6 +153,7 @@ body {
     grid-template-columns: repeat(4, auto);
     grid-gap: 15px;
 }
+
 .boxes {
     height: 100px;
     width: 100px;
@@ -145,6 +162,7 @@ body {
     place-items: center;
     cursor: pointer;
 }
+
 .boxes i {
     font-size: 60px;
     color: #e72929bd;
