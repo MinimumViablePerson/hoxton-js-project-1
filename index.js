@@ -19,19 +19,6 @@ const state = {
     ]
 }
 
-/* <div id="container">
-    <!-- Starting Page -->
-    <div id="startingPage">
-        <h2>Tic Tac Toe</h2>
-        <div id="line"></div>
-        <h4>Select Which You Want To Be?</h4>
-        <div id="button">
-            <button id="playerX" class="choose">Player ( X )</button>
-            <button id="playerO" class="choose">Player ( O )</button>
-        </div>
-    </div> */
-
-
 function renderTiTac() {
 
     const containerEl = document.createElement('div')
@@ -68,27 +55,6 @@ function renderTiTac() {
 
     startingPage.append(titlegame, divLine, selectTitle, buttonDiv)
 
-
-
-    // <!-- Main Page -->
-    // <div id="mainPage">
-    //     <div id="headerBtns">
-    //         <button id="">X Turn</button>
-    //         <button id="O_Turn">O Turn</button>
-    //         <div id="showChange"></div>
-    //     </div>
-    //     <div id="gameBoard">
-    //         <div class="boxes"></div>
-    //         <div class="boxes"></div>
-    //         <div class="boxes"></div>
-    //         <div class="boxes"></div>
-    //         <div class="boxes"></div>
-    //         <div class="boxes"></div>
-    //         <div class="boxes"></div>
-    //         <div class="boxes"></div>
-    //         <div class="boxes"></div>
-    //     </div>
-    // </div>
 
     // Main Page
 
@@ -168,15 +134,6 @@ function renderTiTac() {
 
 
     mainPage.append(headerButton, gameBoard)
-
-
-    // <!-- WInner Page -->
-    // <div id="winner">
-    //     <h2 id="winnerName">Player X Win The Game!</h2>
-    //     <div id="button">
-    //         <button id="quit">Play Again</button>
-    //     </div>
-    // </div>
 
     // WInner Page
 
