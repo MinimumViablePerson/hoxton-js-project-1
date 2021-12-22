@@ -6,14 +6,16 @@
 const state = {
     changeTurn: null,
     winningCombinations: [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
+        [0, 1, 2, 3],
+        [4, 5, 6, 7],
+        [8, 9, 10, 11],
+        [12, 13, 14, 15],
+        [0, 4, 8, 12],
+        [1, 5, 9, 13],
+        [2, 6, 10, 14],
+        [3, 7, 11, 15],
+        [0, 5, 10, 15],
+        [3, 6, 9, 12]
     ]
 }
 
@@ -141,7 +143,28 @@ function renderTiTac() {
     const divBoxes9 = document.createElement('div')
     divBoxes9.setAttribute('class', 'boxes')
 
-    gameBoard.append(divBoxes1, divBoxes2, divBoxes3, divBoxes4, divBoxes5, divBoxes6, divBoxes7, divBoxes8, divBoxes9)
+    const divBoxes10 = document.createElement('div')
+    divBoxes10.setAttribute('class', 'boxes')
+
+    const divBoxes11 = document.createElement('div')
+    divBoxes11.setAttribute('class', 'boxes')
+
+    const divBoxes12 = document.createElement('div')
+    divBoxes12.setAttribute('class', 'boxes')
+
+    const divBoxes13 = document.createElement('div')
+    divBoxes13.setAttribute('class', 'boxes')
+
+    const divBoxes14 = document.createElement('div')
+    divBoxes14.setAttribute('class', 'boxes')
+
+    const divBoxes15 = document.createElement('div')
+    divBoxes15.setAttribute('class', 'boxes')
+
+    const divBoxes16 = document.createElement('div')
+    divBoxes16.setAttribute('class', 'boxes')
+
+    gameBoard.append(divBoxes1, divBoxes2, divBoxes3, divBoxes4, divBoxes5, divBoxes6, divBoxes7, divBoxes8, divBoxes9, divBoxes10, divBoxes11, divBoxes12, divBoxes13, divBoxes14, divBoxes15, divBoxes16)
 
 
     mainPage.append(headerButton, gameBoard)
@@ -218,7 +241,7 @@ choose.forEach(chooseNow => {
         } else {
             state.changeTurn = true;
             // console.log(state.changeTurn);
-            showChange.style.left = `160px`;
+            showChange.style.left = `210px`;
         }
         startingPage.style.display = "none";
         mainPage.style.display = "block";
@@ -233,7 +256,7 @@ boxes.forEach(items => {
             items.innerHTML = `<i class="fas fa-times"></i>`;
             items.id = "X";
             items.style.pointerEvents = "none";
-            showChange.style.left = `160px`;
+            showChange.style.left = `210px`;
 
             // change The "state.changeTurn" Value False Into True
             state.changeTurn = true;
@@ -253,13 +276,13 @@ boxes.forEach(items => {
 
 
 let winningFunc = () => {
-    for (let a = 0; a <= 7; a++) {
+    for (let a = 0; a <= 9; a++) {
         let b = state.winningCombinations[a];
         // console.log(b);
 
-        if (boxes[b[0]].id == "" || boxes[b[1]].id == "" || boxes[b[2]].id == "") {
+        if (boxes[b[0]].id == "" || boxes[b[1]].id == "" || boxes[b[2]].id == "" || boxes[b[3]].id == "") {
             continue;
-        } else if (boxes[b[0]].id == "X" && boxes[b[1]].id == "X" && boxes[b[2]].id == "X") {
+        } else if (boxes[b[0]].id == "X" && boxes[b[1]].id == "X" && boxes[b[2]].id == "X" && boxes[b[3]].id == "X") {
             // console.log("X is The Winner");
 
             // Adding Winner text
@@ -268,7 +291,7 @@ let winningFunc = () => {
             // show "Winner Page" & Hide "Mai Page"
             mainPage.style.display = "none";
             winner.style.display = "block";
-        } else if (boxes[b[0]].id == "O" && boxes[b[1]].id == "O" && boxes[b[2]].id == "O") {
+        } else if (boxes[b[0]].id == "O" && boxes[b[1]].id == "O" && boxes[b[2]].id == "O" && boxes[b[3]].id == "O") {
             // console.log("O is The Winner");
 
             // Adding Winner text
@@ -288,7 +311,9 @@ let drawFunc = () => {
     if (boxes[0].id != "" && boxes[1].id != "" &&
         boxes[2].id != "" && boxes[3].id != "" &&
         boxes[4].id != "" && boxes[5].id != "" &&
-        boxes[6].id != "" && boxes[7].id != "" && boxes[8].id != "") {
+        boxes[6].id != "" && boxes[7].id != "" && boxes[8].id != "" &&
+        boxes[9].id != "" && boxes[10].id != "" && boxes[11].id != "" &&
+        boxes[12].id != "" && boxes[13].id != "" && boxes[14].id != "" && boxes[15].id != "") {
         // Adding "Draw" text
         winnerName.innerText = `Match Draw!`;
 

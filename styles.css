@@ -80,15 +80,15 @@ body {
     margin-top: 40px;
 }
 #mainPage {
-    height: 550px;
-    width: 350px;
+    height: 600px;
+    width: 460px;
     padding: 20px;
     position: relative;
     display: none;
 }
 #mainPage #headerBtns {
     height: 60px;
-    width: 310px;
+    width: auto;
     border-radius: 50px;
     position: relative;
     display: grid;
@@ -98,7 +98,7 @@ body {
 }
 #mainPage #headerBtns button {
     height: 60px;
-    width: 160px;
+    width: 210px;
     border-radius: 50px;
     border: none;
     outline: none;
@@ -113,7 +113,7 @@ body {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.60);
 }
 #mainPage #headerBtns #O_Turn {
-    left: 160px;
+    left: 210px;
     z-index: 3;
 }
 #showChange {
@@ -121,7 +121,7 @@ body {
     top: 0;
     left: 0;
     height: 60px;
-    width: 160px;
+    width: 210px;
     border-radius: 50px;
     background: #e72929bd;
     z-index: 1;
@@ -134,7 +134,7 @@ body {
     top: 150px;
     left: 10px;
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(4, auto);
     grid-gap: 15px;
 }
 .boxes {
