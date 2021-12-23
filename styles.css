@@ -11,6 +11,7 @@ body {
     height: 100vh;
     background: #29a1e7a2;
 }
+
 #container {
     height: auto;
     width: auto;
@@ -49,9 +50,9 @@ body {
     width: 100%;
     margin: 30px 0;
     display: grid;
-   grid-template-columns: repeat(2, auto);
-   place-content: center;
-   gap: 1rem;
+    grid-template-columns: repeat(2, auto);
+    place-content: center;
+    gap: 1rem;
 }
 
 #button button {
