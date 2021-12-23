@@ -144,8 +144,8 @@ body {
 }
 
 #gameBoard {
-    height: 400px;
-    width: 330px;
+    height: auto;
+    width: auto;
     position: absolute;
     top: 150px;
     left: 10px;
