@@ -86,6 +86,11 @@ function renderTiTac() {
     //         <div class="boxes"></div>
     //         <div class="boxes"></div>
     //     </div>
+    //     <div id="switchDiv">
+    //          <button id="switchButton">
+    //              Switch to 4x4 game
+    //          </button>
+    //      </div>
     // </div>
 
     // Main Page
@@ -143,8 +148,21 @@ function renderTiTac() {
 
     gameBoard.append(divBoxes1, divBoxes2, divBoxes3, divBoxes4, divBoxes5, divBoxes6, divBoxes7, divBoxes8, divBoxes9)
 
+    const switchDiv = document.createElement('div')
+    switchDiv.setAttribute('id', 'switchDiv')
 
-    mainPage.append(headerButton, gameBoard)
+    const switchButton = document.createElement('button')
+    switchButton.setAttribute('id', 'switchButton')
+    switchButton.textContent = 'Switch into 4x4 game'
+
+    switchButton.addEventListener('click', function () {
+        gameBoard.style.gridTemplateColumns = "repeat(4, auto)"
+        console.log(gameBoard)
+    })
+
+    switchDiv.append(switchButton)
+
+    mainPage.append(headerButton, gameBoard, switchDiv)
 
 
     // <!-- WInner Page -->
@@ -302,5 +320,3 @@ let drawFunc = () => {
 quit.addEventListener("click", () => {
     window.location.reload();
 })
-
-
