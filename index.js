@@ -42,7 +42,7 @@ const state = {
     </div> */
 
 
-function renderTiTac() {
+function renderTiTac3x3() {
 
     const containerEl = document.createElement('div')
     containerEl.setAttribute('id', 'container')
@@ -213,8 +213,9 @@ function renderTiTac() {
 
 function render() {
     document.body.innerHTML = ''
-    renderTiTac()
-    renderfunction3x3()
+    renderTiTac3x3()
+    // renderfunction3x3()
+    // renderfunction4x4()
 }
 
 render()
@@ -287,7 +288,7 @@ function renderfunction3x3() {
 
     let winningFunc = () => {
         for (let a = 0; a <= 7; a++) {
-            let b = state.winningCombinations[a];
+            let b = state.winningCombinations3x3[a];
             // console.log(b);
 
             if (boxes[b[0]].id == "" || boxes[b[1]].id == "" || boxes[b[2]].id == "") {
@@ -332,6 +333,98 @@ function renderfunction3x3() {
     }
 }
 
+function renderfunction4x4() {
+    choose.forEach(chooseNow => {
+        chooseNow.addEventListener("click", () => {
+            if (chooseNow.id === "playerX") {
+                state.changeTurn = false;
+                // console.log(state.changeTurn);
+                showChange.style.left = `0px`;
+            } else {
+                state.changeTurn = true;
+                // console.log(state.changeTurn);
+                showChange.style.left = `210px`;
+            }
+            startingPage.style.display = "none";
+            mainPage.style.display = "block";
+        })
+    });
+
+    boxes.forEach(items => {
+        items.addEventListener("click", () => {
+            // Add "X" Icon If "state.changeTurn" = False
+            // Add "O" Icon If "state.changeTurn" = True
+            if (state.changeTurn == false) {
+                items.innerHTML = `<i class="fas fa-times"></i>`;
+                items.id = "X";
+                items.style.pointerEvents = "none";
+                showChange.style.left = `210px`;
+
+                // change The "state.changeTurn" Value False Into True
+                state.changeTurn = true;
+            } else {
+                items.innerHTML = `<i class="fas fa-circle-notch"></i>`;
+                items.id = "O";
+                items.style.pointerEvents = "none";
+                showChange.style.left = `0px`;
+
+                // change The "state.changeTurn" Value False Into True
+                state.changeTurn = false;
+            }
+            winningFunc();
+            drawFunc();
+        })
+    })
+
+
+    let winningFunc = () => {
+        for (let a = 0; a <= 9; a++) {
+            let b = state.winningCombinations4x4[a];
+            // console.log(b);
+
+            if (boxes[b[0]].id == "" || boxes[b[1]].id == "" || boxes[b[2]].id == "" || boxes[b[3]].id == "") {
+                continue;
+            } else if (boxes[b[0]].id == "X" && boxes[b[1]].id == "X" && boxes[b[2]].id == "X" && boxes[b[3]].id == "X") {
+                // console.log("X is The Winner");
+
+                // Adding Winner text
+                winnerName.innerText = `Player X Win The Game!`;
+
+                // show "Winner Page" & Hide "Mai Page"
+                mainPage.style.display = "none";
+                winner.style.display = "block";
+            } else if (boxes[b[0]].id == "O" && boxes[b[1]].id == "O" && boxes[b[2]].id == "O" && boxes[b[3]].id == "O") {
+                // console.log("O is The Winner");
+
+                // Adding Winner text
+                winnerName.innerText = `Player O Win The Game!`;
+
+                // show "Winner Page" & Hide "Mai Page"
+                mainPage.style.display = "none";
+                winner.style.display = "block";
+            } else {
+                continue;
+            }
+        }
+    }
+
+    // Match Draw Function
+    let drawFunc = () => {
+        if (boxes[0].id != "" && boxes[1].id != "" &&
+            boxes[2].id != "" && boxes[3].id != "" &&
+            boxes[4].id != "" && boxes[5].id != "" &&
+            boxes[6].id != "" && boxes[7].id != "" && boxes[8].id != "" &&
+            boxes[9].id != "" && boxes[10].id != "" && boxes[11].id != "" &&
+            boxes[12].id != "" && boxes[13].id != "" && boxes[14].id != "" && boxes[15].id != "") {
+            // Adding "Draw" text
+            winnerName.innerText = `Match Draw!`;
+
+            // show "Winner Page" & Hide "Mai Page"
+            mainPage.style.display = "none";
+            winner.style.display = "block";
+        }
+    }
+}
 // Reset Game
 quit.addEventListener("click", () => {
     window.location.reload();
