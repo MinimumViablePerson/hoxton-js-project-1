@@ -5,7 +5,7 @@
 // All Possible Winning Combinations
 const state = {
     changeTurn: null,
-    winningCombinations: [
+    winningCombinations3x3: [
         [0, 1, 2],
         [3, 4, 5],
         [6, 7, 8],
@@ -14,6 +14,18 @@ const state = {
         [2, 5, 8],
         [0, 4, 8],
         [2, 4, 6]
+    ],
+    winningCombinations4x4: [
+        [0, 1, 2, 3],
+        [4, 5, 6, 7],
+        [8, 9, 10, 11],
+        [12, 13, 14, 15],
+        [0, 4, 8, 12],
+        [1, 5, 9, 13],
+        [2, 6, 10, 14],
+        [3, 7, 11, 15],
+        [0, 5, 10, 15],
+        [3, 6, 9, 12]
     ]
 }
 
@@ -156,8 +168,7 @@ function renderTiTac() {
     switchButton.textContent = 'Switch into 4x4 game'
 
     switchButton.addEventListener('click', function () {
-        gameBoard.style.gridTemplateColumns = "repeat(4, auto)"
-        console.log(gameBoard)
+
     })
 
     switchDiv.append(switchButton)
@@ -203,6 +214,7 @@ function renderTiTac() {
 function render() {
     document.body.innerHTML = ''
     renderTiTac()
+    renderfunction3x3()
 }
 
 render()
@@ -227,92 +239,96 @@ let quit = document.querySelector("#quit");
 
 // Select Which You Want To Be>
 // X or O
-choose.forEach(chooseNow => {
-    chooseNow.addEventListener("click", () => {
-        if (chooseNow.id === "playerX") {
-            state.changeTurn = false;
-            // console.log(state.changeTurn);
-            showChange.style.left = `0px`;
-        } else {
-            state.changeTurn = true;
-            // console.log(state.changeTurn);
-            showChange.style.left = `160px`;
-        }
-        startingPage.style.display = "none";
-        mainPage.style.display = "block";
+
+function renderfunction3x3() {
+
+    choose.forEach(chooseNow => {
+        chooseNow.addEventListener("click", () => {
+            if (chooseNow.id === "playerX") {
+                state.changeTurn = false;
+                // console.log(state.changeTurn);
+                showChange.style.left = `0px`;
+            } else {
+                state.changeTurn = true;
+                // console.log(state.changeTurn);
+                showChange.style.left = `160px`;
+            }
+            startingPage.style.display = "none";
+            mainPage.style.display = "block";
+        })
+    });
+
+    boxes.forEach(items => {
+        items.addEventListener("click", () => {
+            // Add "X" Icon If "state.changeTurn" = False
+            // Add "O" Icon If "state.changeTurn" = True
+            if (state.changeTurn == false) {
+                items.innerHTML = `<i class="fas fa-times"></i>`;
+                items.id = "X";
+                items.style.pointerEvents = "none";
+                showChange.style.left = `160px`;
+
+                // change The "state.changeTurn" Value False Into True
+                state.changeTurn = true;
+            } else {
+                items.innerHTML = `<i class="fas fa-circle-notch"></i>`;
+                items.id = "O";
+                items.style.pointerEvents = "none";
+                showChange.style.left = `0px`;
+
+                // change The "state.changeTurn" Value False Into True
+                state.changeTurn = false;
+            }
+            winningFunc();
+            drawFunc();
+        })
     })
-});
-
-boxes.forEach(items => {
-    items.addEventListener("click", () => {
-        // Add "X" Icon If "state.changeTurn" = False
-        // Add "O" Icon If "state.changeTurn" = True
-        if (state.changeTurn == false) {
-            items.innerHTML = `<i class="fas fa-times"></i>`;
-            items.id = "X";
-            items.style.pointerEvents = "none";
-            showChange.style.left = `160px`;
-
-            // change The "state.changeTurn" Value False Into True
-            state.changeTurn = true;
-        } else {
-            items.innerHTML = `<i class="fas fa-circle-notch"></i>`;
-            items.id = "O";
-            items.style.pointerEvents = "none";
-            showChange.style.left = `0px`;
-
-            // change The "state.changeTurn" Value False Into True
-            state.changeTurn = false;
-        }
-        winningFunc();
-        drawFunc();
-    })
-})
 
 
-let winningFunc = () => {
-    for (let a = 0; a <= 7; a++) {
-        let b = state.winningCombinations[a];
-        // console.log(b);
+    let winningFunc = () => {
+        for (let a = 0; a <= 7; a++) {
+            let b = state.winningCombinations[a];
+            // console.log(b);
 
-        if (boxes[b[0]].id == "" || boxes[b[1]].id == "" || boxes[b[2]].id == "") {
-            continue;
-        } else if (boxes[b[0]].id == "X" && boxes[b[1]].id == "X" && boxes[b[2]].id == "X") {
-            // console.log("X is The Winner");
+            if (boxes[b[0]].id == "" || boxes[b[1]].id == "" || boxes[b[2]].id == "") {
+                continue;
+            } else if (boxes[b[0]].id == "X" && boxes[b[1]].id == "X" && boxes[b[2]].id == "X") {
+                // console.log("X is The Winner");
 
-            // Adding Winner text
-            winnerName.innerText = `Player X Win The Game!`;
+                // Adding Winner text
+                winnerName.innerText = `Player X Win The Game!`;
 
-            // show "Winner Page" & Hide "Mai Page"
-            mainPage.style.display = "none";
-            winner.style.display = "block";
-        } else if (boxes[b[0]].id == "O" && boxes[b[1]].id == "O" && boxes[b[2]].id == "O") {
-            // console.log("O is The Winner");
+                // show "Winner Page" & Hide "Mai Page"
+                mainPage.style.display = "none";
+                winner.style.display = "block";
+            } else if (boxes[b[0]].id == "O" && boxes[b[1]].id == "O" && boxes[b[2]].id == "O") {
+                // console.log("O is The Winner");
 
-            // Adding Winner text
-            winnerName.innerText = `Player O Win The Game!`;
+                // Adding Winner text
+                winnerName.innerText = `Player O Win The Game!`;
 
-            // show "Winner Page" & Hide "Mai Page"
-            mainPage.style.display = "none";
-            winner.style.display = "block";
-        } else {
-            continue;
+                // show "Winner Page" & Hide "Mai Page"
+                mainPage.style.display = "none";
+                winner.style.display = "block";
+            } else {
+                continue;
+            }
         }
     }
-}
 
-// Match Draw Function
-let drawFunc = () => {
-    if (boxes[0].id != "" && boxes[1].id != "" &&
-        boxes[2].id != "" && boxes[3].id != "" &&
-        boxes[4].id != "" && boxes[5].id != "" &&
-        boxes[6].id != "" && boxes[7].id != "" && boxes[8].id != "") {
-        // Adding "Draw" text
-        winnerName.innerText = `Match Draw!`;
+    // Match Draw Function
+    let drawFunc = () => {
+        if (boxes[0].id != "" && boxes[1].id != "" &&
+            boxes[2].id != "" && boxes[3].id != "" &&
+            boxes[4].id != "" && boxes[5].id != "" &&
+            boxes[6].id != "" && boxes[7].id != "" && boxes[8].id != "") {
+            // Adding "Draw" text
+            winnerName.innerText = `Match Draw!`;
 
-        // show "Winner Page" & Hide "Mai Page"
-        mainPage.style.display = "none";
-        winner.style.display = "block";
+            // show "Winner Page" & Hide "Mai Page"
+            mainPage.style.display = "none";
+            winner.style.display = "block";
+        }
     }
 }
 
