@@ -326,6 +326,22 @@ function renderTiTac4x4() {
 
     gameBoard.append(divBoxes1, divBoxes2, divBoxes3, divBoxes4, divBoxes5, divBoxes6, divBoxes7, divBoxes8, divBoxes9, divBoxes10, divBoxes11, divBoxes12, divBoxes13, divBoxes14, divBoxes15, divBoxes16)
 
+    const switchDiv = document.createElement('div')
+    switchDiv.setAttribute('id', 'switchDiv')
+
+    const switchButton = document.createElement('button')
+    switchButton.setAttribute('id', 'switchButton')
+    switchButton.textContent = 'Switch back to 3x3 game'
+
+    switchButton.addEventListener('click', function () {
+        document.body.innerHTML = ''
+        state.winningCombinations = winningCombinations3x3
+        renderTiTac3x3()
+    })
+
+    switchDiv.append(switchButton)
+
+    mainPage.append(headerButton, gameBoard, switchDiv)
 
     mainPage.append(headerButton, gameBoard)
 
@@ -359,9 +375,6 @@ function renderTiTac4x4() {
 function render() {
     document.body.innerHTML = ''
     renderTiTac3x3()
-
-    renderTiTac4x4()
-
 }
 render()
 
@@ -574,6 +587,12 @@ function renderfunction4x4() {
     }
 }
 renderfunction3x3()
+
+const switchButton = document.querySelector('#switchButton')
+if (switchButton.clicked == true) {
+    document.body.innerHTML = ''
+    renderfunction4x4()
+}
 
 // Reset Game
 quit.addEventListener("click", () => {
