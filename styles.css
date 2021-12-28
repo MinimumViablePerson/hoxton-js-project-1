@@ -23,9 +23,13 @@ body {
 }
 
 #startingPage {
-  height: 250px;
   width: 300px;
   text-align: center;
+}
+
+#startingPage .size-radio-label {
+  font-size: 1.3rem;
+  margin: 0.2rem;
 }
 
 #startingPage h2,
@@ -89,10 +93,10 @@ body {
 }
 
 #mainPage {
-  height: 550px;
-  width: 350px;
   padding: 20px;
-  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
 }
 
 #mainPage #headerBtns {
@@ -148,13 +152,7 @@ body {
 }
 
 #gameBoard {
-  height: 400px;
-  width: 330px;
-  position: absolute;
-  top: 150px;
-  left: 10px;
   display: grid;
-  grid-template-columns: repeat(3, auto);
   grid-gap: 15px;
 }
 

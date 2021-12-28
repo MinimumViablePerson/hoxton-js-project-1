@@ -2,6 +2,50 @@
 // False => X's Turn
 // True => O's Turn
 
+const board3x3 = ['', '', '', '', '', '', '', '', '']
+const board4x4 = [
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  ''
+]
+
+const winningCombinations3x3 = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+]
+
+const winningCombinations4x4 = [
+  [0, 1, 2, 3],
+  [4, 5, 6, 7],
+  [8, 9, 10, 11],
+  [12, 13, 14, 15],
+  [0, 4, 10, 12],
+  [1, 5, 9, 13],
+  [2, 6, 10, 14],
+  [3, 7, 11, 15],
+  [0, 5, 10, 15],
+  [3, 6, 9, 12]
+]
+
 // All Possible Winning Combinations
 const state = {
   board: ['', '', '', '', '', '', '', '', ''],
@@ -15,7 +59,8 @@ const state = {
     [0, 4, 8],
     [2, 4, 6]
   ],
-  turn: null
+  turn: null,
+  boardSize: 3
 }
 
 function checkIfDraw () {
@@ -71,7 +116,46 @@ function renderStartingPage (containerEl) {
 
   buttonDiv.append(buttonPlayerx, buttonPlayero)
 
-  startingPage.append(titlegame, divLine, selectTitle, buttonDiv)
+  const sizePickSection = document.createElement('div')
+
+  const pickBoardSizeH2 = document.createElement('h4')
+  pickBoardSizeH2.textContent = 'Pick a board size'
+  sizePickSection.append(pickBoardSizeH2)
+
+  for (const size of [3, 4]) {
+    const labelEl = document.createElement('label')
+    labelEl.setAttribute('class', 'size-radio-label')
+    labelEl.textContent = size
+
+    const radioEl = document.createElement('input')
+    radioEl.setAttribute('type', 'radio')
+    radioEl.setAttribute('name', 'size')
+    radioEl.value = size
+    if (size === state.boardSize) radioEl.checked = true
+    radioEl.addEventListener('click', function () {
+      state.boardSize = size
+      if (state.boardSize === 3) {
+        state.board = board3x3.slice()
+        state.winningCombinations = winningCombinations3x3.slice()
+      }
+      if (state.boardSize === 4) {
+        state.board = board4x4.slice()
+        state.winningCombinations = winningCombinations4x4.slice()
+      }
+      render()
+    })
+
+    labelEl.append(radioEl)
+    sizePickSection.append(labelEl)
+  }
+
+  startingPage.append(
+    titlegame,
+    divLine,
+    selectTitle,
+    buttonDiv,
+    sizePickSection
+  )
   containerEl.append(startingPage)
 }
 
@@ -98,6 +182,10 @@ function renderMainPage (containerEl) {
 
   const gameBoard = document.createElement('div')
   gameBoard.setAttribute('id', 'gameBoard')
+  gameBoard.setAttribute(
+    'style',
+    `grid-template-columns: repeat(${state.boardSize}, auto);`
+  )
 
   for (const index in state.board) {
     const tile = state.board[index]
