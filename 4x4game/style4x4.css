@@ -153,7 +153,6 @@ body {
     grid-template-columns: repeat(4, auto);
     grid-gap: 15px;
 }
-
 .boxes {
     height: 100px;
     width: 100px;
@@ -162,7 +161,6 @@ body {
     place-items: center;
     cursor: pointer;
 }
-
 .boxes i {
     font-size: 60px;
     color: #e72929bd;

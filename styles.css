@@ -137,6 +137,35 @@ body {
     grid-template-columns: repeat(3, auto);
     grid-gap: 15px;
 }
+#switchDiv{
+    position: absolute;
+    top: 550px;
+    display: grid;
+    place-content: center;
+    width: 88%;
+}
+#switchLink{
+    height: 50px;
+    width: 250px;
+    box-shadow: 2px 2px 2px rgb(255 255 255 / 26%), -2px -2px 5px rgb(0 0 0 / 87%);
+    cursor: pointer;
+    transform: scale(0.9);
+    background: #dcb388;
+    border: none;
+    outline: none;
+    color: #1e3845;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(255 255 255 / 26%), -2px -2px 5px rgb(0 0 0 / 87%);
+    transition: 0.5s;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+#switchLink:hover{
+    transform: scale(0.8);
+    transition: 0.5s;
+}
 .boxes {
     height: 100px;
     width: 100px;

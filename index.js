@@ -131,12 +131,17 @@ function renderTiTac3x3() {
 
     gameBoard.append(divBoxes1, divBoxes2, divBoxes3, divBoxes4, divBoxes5, divBoxes6, divBoxes7, divBoxes8, divBoxes9)
 
+    const switchDiv = document.createElement('div')
+    switchDiv.setAttribute('id', 'switchDiv')
+
     const switchLink = document.createElement('a')
+    switchLink.setAttribute('id', 'switchLink')
     switchLink.setAttribute('href', '/4x4game/index4x4.html')
     switchLink.textContent = 'Switch to 4x4 game'
 
+    switchDiv.append(switchLink)
 
-    mainPage.append(headerButton, gameBoard, switchLink)
+    mainPage.append(headerButton, gameBoard, switchDiv)
 
 
     // <!-- WInner Page -->
