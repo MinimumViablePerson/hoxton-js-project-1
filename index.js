@@ -559,6 +559,3 @@ renderfunction4x4()
 quit.addEventListener("click", () => {
     window.location.reload();
 })
-
-
-
