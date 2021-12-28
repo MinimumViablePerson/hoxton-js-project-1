@@ -128,14 +128,15 @@ function renderTiTac3x3() {
     const divBoxes9 = document.createElement('div')
     divBoxes9.setAttribute('class', 'boxes')
 
-    // const switchLink = document.createElement('a')
-    // switchLink.setAttribute('href', '/4x4game/index4x4.html')
-    // switchLink.textContent = 'Switch to 4x4 game'
 
     gameBoard.append(divBoxes1, divBoxes2, divBoxes3, divBoxes4, divBoxes5, divBoxes6, divBoxes7, divBoxes8, divBoxes9)
 
+    const switchLink = document.createElement('a')
+    switchLink.setAttribute('href', '/4x4game/index4x4.html')
+    switchLink.textContent = 'Switch to 4x4 game'
 
-    mainPage.append(headerButton, gameBoard)
+
+    mainPage.append(headerButton, gameBoard, switchLink)
 
 
     // <!-- WInner Page -->
